@@ -10,22 +10,26 @@ class LoginController extends Controller
 {
     public function showLoginForm()
     {
-        return view('admin.authen.login');
+        return view('auth.login');
     }
-
-    public function login(Request $request)
+public function login(Request $request)
+{
+    $request->validate([
+        'email'=>'required|email',
+        'password'=>'required'
+    ]);
+    $credentials =$request->only('email','password');
+    if(auth()->guard('admin')->attempt($credentials))
     {
-        // Validation
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
-
-        // Attempt admin login
-        if (Auth::attempt($request->only('email', 'password'))) {
-            return redirect()->route('admin.dashboard');
-        }
-
-        return back()->with('error', 'Email or Password incorrect!');
+        return redirect()->intended(route('admin.dashboard'));
     }
+    return back()->with('error', 'Invalid credentials');
+}
+
+public function logout()
+{
+    auth()->guard('admin')->logout();
+    return redirect()->route('admin.login');
+}
+
 }

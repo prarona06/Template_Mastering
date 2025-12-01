@@ -10,7 +10,7 @@ Route::prefix('admin')->group(function(){
 
 Route::controller(LoginController::class)->group(function(){
 
-Route::get('/login','showLoginForm')->name('admin.login');
+Route::get('/login-form','showLoginForm')->name('admin.login');
 Route::get('/login','login')->name('admin.login.submit');
 Route::get('/logout','logout')->name('admin.logout');
 

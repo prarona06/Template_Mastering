@@ -1,4 +1,12 @@
 @include('layouts.admin-partial.head')
-@include('layouts.admin-partial.sidebar')
+
+ @auth('admin')
+     @include('layouts.admin-partial.sidebar')
+
+ @endauth
+
 @yield('admin-content')
-@include('layouts.admin-partial.footer')
+@auth('admin')
+    @include('layouts.admin-partial.footer')
+@endauth
+@include('layouts.admin-partial.scripts')

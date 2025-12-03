@@ -45,7 +45,7 @@
               @enderror
               @if (session()->has('error'))
               <span class="invalid-feedback" role="alert">
-                <strong>{{ session(->get('error'))}}</strong>
+                <strong>{{ session()->get('error')}}</strong>
               </span>
 
               @endif

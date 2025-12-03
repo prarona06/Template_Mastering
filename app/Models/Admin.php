@@ -8,5 +8,5 @@ use Illuminate\Foundation\Auth\User as Authenticable;
 class Admin extends Authenticable
 
 {
-    //
+    protected $table="admins";
 }

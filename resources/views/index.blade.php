@@ -44,13 +44,37 @@
                         <table class="table table-bordered datatable">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID</th>
+                                    <th scope="col">#</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Slug</th>
+                                    <th scope="col">Serial_no</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col">Action</th>
                                 </tr>
 
                             </thead>
+                           <tbody>
+                             @foreach ($categories as $ategory)
+                             <tr>
+                                <th> {{$loop->iteration}}</th>
+                                <td>{{$category->name}}</td>
+                                <td>{{$category->serial_no}}</td>
+                                <td>{{$category->status ='active' ? 'Active' : 'Inactive'}}</td>
+                                <td>
+                                    <a href="javascript:void(0)" class="btn btn-primary" data-bs-target="#editModal{{$category->id}}">
+                                        <i class="fas fa-edit"></i>
+
+                                    </a>
+                                     <a href="javascript:void(0)" class="btn btn-danger" data-bs-target="#deleteModal{{$category->id}}">
+                                        <i class="fas fa-trash"></i>
+
+                                    </a>
+
+
+                                </td>
+                             </tr>
+
+                            @endforeach
+                           </tbody>
 
                         </table>
 
@@ -487,7 +511,7 @@
     <div class="col-md-12">
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form action="" method="POST" class="modal-content">
+    <form action="{{ route('admin.categories.store') }}" method="POST" class="modal-content">
         @csrf
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
@@ -496,11 +520,46 @@
       <div class="modal-body">
         <div class="from-group mb-3">
             <label for="name">Category name</label>
-            <input type="text" name="name" class="form-control" placeholder="category name">
+            <input type="text" name="name" class="form-control @error('name') is-invalid
+
+            @enderror" placeholder="category name">
+            @error('name')
+            <span class="invalid-feedback" role ="alert">
+                <strong>{{ $message}}</strong>
+
+            </span>
+
+            @enderror
         </div>
          <div class="from-group mb-3">
             <label for="serial_no">Serial no</label>
-            <input type="text" name="serial_no" min="0" class="form-control" placeholder="serial_no">
+            <input type="text" name="serial_no" min="0" class="form-control @error('serial_no') is-invalid
+
+            @enderror" placeholder="serial_no">
+               @error('serial_no')
+            <span class="invalid-feedback" role ="alert">
+                <strong>{{ $message}}</strong>
+
+            </span>
+
+            @enderror
+      </div>
+      <div class="form-control mb-3">
+        <label for="status">Status</label>
+        <select name="status" id="" class="form-control @error('status') is-invalid
+
+            @enderror">
+            <option value="">Active</option>
+             <option value="">Inactive</option>
+        </select>
+        @error('status')
+            <span class="invalid-feedback" role ="alert">
+                <strong>{{ $message}}</strong>
+
+            </span>
+
+            @enderror
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -110,6 +110,7 @@
                 <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
               </div>
             </li>
+          </ul>
             <!--end::Messages Dropdown Menu-->
             <!--begin::Notifications Dropdown Menu-->
             <li class="nav-item dropdown">
@@ -232,7 +233,7 @@
               data-accordion="false"
               id="navigation"
             >
-              <li class="nav-item ">
+              <li class="nav-item {{ request()->routeIs('admin.dashboard') ? "menu-active" }} ">
                 <a href="{{ route('admin.dashboard') }}" class="nav-link ">
                   <i class="nav-icon bi bi-speedometer"></i>
                   <p>
@@ -242,10 +243,10 @@
                 </a>
              </li>
 
-              <li class="nav-item">
-                <a href="{{ route('admin.categories') }}" class="nav-link">
+              <li class="nav-item {{ request()->is('admin/categories*')? "menu-active" }}">
+                <a href="{{ route('admin.categories') }}" class="nav-link ">
                   <i class="nav-icon bi bi-palette"></i>
-                  <p>Categories</p>
+                  <p>Categorie Management</p>
                 </a>
               </li>
               <li class="nav-item">

@@ -2,7 +2,7 @@
 @section('admin-content')
       <main class="app-main">
         <!--begin::App Content Header-->
-        <div class="app-content-header">
+      <div class="app-content-header">
           <!--begin::Container-->
           <div class="container-fluid">
             <!--begin::Row-->
@@ -10,15 +10,54 @@
               <div class="col-sm-6"><h3 class="mb-0">Dashboard</h3></div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                 </ol>
               </div>
-            </div>
+               </div>
+
             <!--end::Row-->
+
+
           </div>
+
           <!--end::Container-->
         </div>
+          <div class="row">
+            <div class="col-md-12">
+
+                <div class="card">
+                    <div class="card-header ">
+                       <div class="d-flex justify-content-between">
+                         <h3 class="card-title">
+                        <i class="fa-solid fa-circle-info"> ALL  Categorie</i>
+                        </h3>
+                       </div>
+                        <div>
+                            <a href="javascript:void(0)" class="btn btn-primary  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="fas fa-plus">Add category</i>
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered datatable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Slug</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+
+                            </thead>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            </div>
         <!--end::App Content Header-->
         <!--begin::App Content-->
         <div class="app-content">
@@ -439,6 +478,45 @@
           <!--end::Container-->
         </div>
         <!--end::App Content-->
+
+        <!-- Button trigger modal -->
+
+
+<!-- bootstrap Modal -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form action="" method="POST" class="modal-content">
+        @csrf
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="from-group mb-3">
+            <label for="name">Category name</label>
+            <input type="text" name="name" class="form-control" placeholder="category name">
+        </div>
+         <div class="from-group mb-3">
+            <label for="serial_no">Serial no</label>
+            <input type="text" name="serial_no" min="0" class="form-control" placeholder="serial_no">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Create</button>
+      </div>
+    </form>
+  </div>
+</div>
+    </div>
+</div>
+
       </main>
       <!--end::App Main-->
+
+
+
+
+
 @endsection

@@ -38,7 +38,7 @@
                                 </h3>
                             </div>
                             <div>
-                                <a href="{{ route('admin.categories') }}" class="btn btn-primary  data-bs-toggle="modal"
+                                <a href="{{ route('admin.categories') }}" class="btn btn-primary"
                                     data-bs-target="#exampleModal">
                                     <i class="fas fa-arrow-left">Go Back to List</i>
                                 </a>
@@ -47,12 +47,14 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-12">
-                                    <form>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8 me-auto">
+                                    <form action="{{ route ('admin.categories.update',$category->id)}}" method="POST">
                                         @csrf
+                                        @method('PATCH')
                                         <div class="from-group mb-3">
                                             <label for="name">Category name</label>
-                                            <input type="text" name="name"
+                                            <input type="text" value="{{ $category->name }}" name="name"
                                                 class="form-control @error('name') is-invalid
 
             @enderror"
@@ -66,7 +68,7 @@
                                         </div>
                                         <div class="from-group mb-3">
                                             <label for="serial_no">Serial no</label>
-                                            <input type="text" name="serial_no" min="0"
+                                            <input type="text" value="{{ $category->serial_no }}" name="serial_no" min="0"
                                                 class="form-control @error('serial_no') is-invalid
 
             @enderror"
@@ -84,8 +86,8 @@
                                                 class="form-control @error('status') is-invalid
 
             @enderror">
-                                                <option value="">Active</option>
-                                                <option value="">Inactive</option>
+                                                <option value="active"{{ $category->status ='active' ? 'selected':'' }}>>Active</option>
+                                                <option value="inactive {{ $category->status ='inactive' ? 'selected':'' }}">Inactive</option>
                                             </select>
                                             @error('status')
                                                 <span class="invalid-feedback" role ="alert">
@@ -93,6 +95,12 @@
 
                                                 </span>
                                             @enderror
+
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fas fa-edit"></i>Update Category
+                                            </button>
 
                                         </div>
                                     </form>
@@ -461,7 +469,7 @@
             <!-- Button trigger modal -->
 
 
-         
+
 
     </main>
     <!--end::App Main-->

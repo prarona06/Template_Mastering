@@ -60,7 +60,7 @@
                                 <td>{{$category->serial_no}}</td>
                                 <td>{{$category->status ='active' ? 'Active' : 'Inactive'}}</td>
                                 <td>
-                                    <a href="javascript:void(0)" class="btn btn-primary" data-bs-target="#editModal{{$category->id}}">
+                                    <a href="{{ route('admin.categories.edit', category->id) }}" class="btn btn-primary" >
                                         <i class="fas fa-edit"></i>
 
                                     </a>

@@ -54,6 +54,18 @@ $category->status =$request->status;
 $category->save();
 return redirect()->route('admin.categories')->with('success','Category updated successfully');
 }
+
+public function destroy ($id)
+{
+$category=Category::findOrFail($id);
+$category->delete();
+return back()->with('success','Category deleted successfully');
+
+
+}
+
+
+
 }
 
 

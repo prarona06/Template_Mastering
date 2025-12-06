@@ -232,11 +232,15 @@
       sparkline3.render();
     </script>
     <script>
+        //sweet_alert
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.23.0/sweetalert2.min.js"></script>
+
         //inisilize datatable
 
     $('.datatable').DataTable();
 
     </script>
+    @stack('scripts')
 
     <!--end::Script-->
   </body>

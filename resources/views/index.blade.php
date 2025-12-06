@@ -64,11 +64,12 @@
                                         <i class="fas fa-edit"></i>
 
                                     </a>
-                                     <a href="javascript:void(0)" class="btn btn-danger" data-bs-target="#deleteModal{{$category->id}}">
-                                        <i class="fas fa-trash"></i>
+                                    <form action="{{ route('admin.categories.delete', category->id) }}" method="POST" class="d-inline-block" >
 
-                                    </a>
 
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type ="submit" class="btn btn-danger">Delete</></form>
 
                                 </td>
                              </tr>
@@ -579,3 +580,27 @@
 
 
 @endsection
+@push('scripts')
+<script>
+    $(document).ready(function () {
+        $('.trash').on('submit',function(e))
+    e.preventDefault();
+    let form = this;
+    Swal.fire({
+  title: "Are you sure?",
+  text: "You won't be able to revert this!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, delete it!"
+}).then((result) => {
+  if (result.isConfirmed) {
+    form.submit();
+  }
+    });
+  });
+
+</script>
+
+@endpush
